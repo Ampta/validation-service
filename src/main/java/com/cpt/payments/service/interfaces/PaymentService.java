@@ -1,9 +1,10 @@
 package com.cpt.payments.service.interfaces;
 
 import com.cpt.payments.dto.PaymentRequestDTO;
+import com.cpt.payments.dto.PaymentResponseDTO;
 
 public interface PaymentService {
 	
-	public String validateAndProcessPayment(PaymentRequestDTO paymentRequest);
+	public PaymentResponseDTO validateAndProcessPayment(PaymentRequestDTO paymentRequest);
 
 }

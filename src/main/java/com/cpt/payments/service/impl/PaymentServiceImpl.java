@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.cpt.payments.constant.ValidatorEnum;
 import com.cpt.payments.dto.PaymentRequestDTO;
-import com.cpt.payments.service.impl.validators.ValidatorRule1;
-import com.cpt.payments.service.impl.validators.ValidatorRule2;
 import com.cpt.payments.service.interfaces.PaymentService;
 import com.cpt.payments.service.interfaces.Validator;
 
@@ -36,18 +35,22 @@ public class PaymentServiceImpl implements PaymentService {
 			log.info("Validating payment request using rule: {}", rule);
 			
 			Validator validator = null;
-			if(rule.equals("VALIDATOR_RULE1")) {
-				validator = applicationContext.getBean(ValidatorRule1.class);
-			}else if(rule.equals("VALIDATOR_RULE2")) {
-				validator = applicationContext.getBean(ValidatorRule2.class);
+			Class<? extends Validator> validatorClass = ValidatorEnum.getClassByName(rule);
+			
+			if(validatorClass != null) {
+				validator = applicationContext.getBean(validatorClass);
+				if(validator != null) {
+					log.info("Calling validator rule: {}", rule);
+					validator.validate(paymentRequest);
+					
+				}
 			}
 			
-			if(validator == null) {
-				log.error("Validator not found for rule: {}", rule);
-				continue; 	 
+			if(validatorClass == null || validator == null) {
+				log.error("Either Validation class not found or Validator Instance not found for "
+						+ "| rule: {} | validatorClass: {} | validator: {}", rule, validatorClass, validator);
+				return rule;
 			}
-			
-			validator.validate(paymentRequest);
 			
 		}
 		

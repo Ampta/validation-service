@@ -17,9 +17,7 @@ public class ValidatorRule1 implements Validator {
 	@Override
 	public void validate(PaymentRequestDTO paymentRequestDTO) {
 		log.info("ValidatorRule1 | Validating payment request: {}", paymentRequestDTO);
-		
-		// TODO implement validating logic here 
-		
+				
 		if(paymentRequestDTO.getAmount() < 0) {
 			log.error("ValidationRule1 | payment request validation failed, amount cannot be negative" );
 			

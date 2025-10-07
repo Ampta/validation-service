@@ -34,7 +34,12 @@ public class PaymentController {
 	@PostMapping
 	public ResponseEntity<PaymentResponse> createPayment(@RequestBody PaymentRequest paymentRequest) {
 		
+		log.trace("Payment request received: {}", paymentRequest);
+		log.debug("Payment request received: {}", paymentRequest);
 		log.info("Payment request received: {}", paymentRequest);
+		log.warn("Payment request received: {}", paymentRequest);
+		log.error("Payment request received: {}", paymentRequest);
+		
 		
 		PaymentRequestDTO paymentRequestDTO = modelMapper.map(paymentRequest, PaymentRequestDTO.class);
 		

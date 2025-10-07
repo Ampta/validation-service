@@ -3,8 +3,8 @@ package com.cpt.payments.constant;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.cpt.payments.service.impl.validators.DuplicateTxnCheck;
 import com.cpt.payments.service.impl.validators.ValidatorRule1;
-import com.cpt.payments.service.impl.validators.ValidatorRule2;
 import com.cpt.payments.service.interfaces.Validator;
 
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public enum ValidatorEnum {
 	
 	VALIDATOR_RULE1("VALIDATOR_RULE1", ValidatorRule1.class),
-    VALIDATOR_RULE2("VALIDATOR_RULE2", ValidatorRule2.class);
+    VALIDATOR_RULE2("DUPLICATE_TXN_CHECK", DuplicateTxnCheck.class);
 
     private static final Map<String, ValidatorEnum> NAME_TO_ENUM_MAP = new HashMap<>();
 

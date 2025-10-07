@@ -9,15 +9,15 @@ import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Slf4j
-public class ValidatorRule2 implements Validator {
+public class DuplicateTxnCheck implements Validator {
 
 	@Override
 	public void validate(PaymentRequestDTO paymentRequestDTO) {
-		log.info("ValidatorRule2 | Validating payment request: {}", paymentRequestDTO);
+		log.info("DuplicateTxnCheck | Validating payment request: {}", paymentRequestDTO);
 		
 		// TODO implement validating logic here 
 		
-		log.info("ValidatorRule2 | Payment request validated successfully");
+		log.info("DuplicateTxnCheck | Payment request validated successfully");
 
 	}
 
